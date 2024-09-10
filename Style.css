@@ -13,12 +13,13 @@ body{
 }
 
 input{
-    margin: 4em;
+    margin: 4em 2em 3em 2em;
     font-size:12px;
     padding: 0 15px;
     width: 30em;
     height: 4em;
     border-radius: 10px;
+    
 }
 
 #explanation{
@@ -51,4 +52,22 @@ input{
     width: 2px;
     height: 110%;
     background-color:rgb(220, 42, 42, 0.4);
+}
+
+button{
+    background-color: white;
+    border-style:solid;
+    border-color:black;
+    border-radius: 15px;
+    padding: 5px 15px;
+    transition: background-color 0.5s;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: rgb(239, 239, 239);
+}
+
+#new_guess_bttn{
+    margin-bottom: 2em;
 }

@@ -1,6 +1,25 @@
 const WORD_API = "https://random-word-api.herokuapp.com/word";
 const shownWord = document.getElementById('random_word');
 const playerInput = document.getElementById('player_guess');
+const totalGuessText = document.getElementById('guesses');
+const correctText = document.getElementById('correct');
+
+let playerScores = null;
+
+/**
+ * Sets up local storage for scoring system accross sessions
+ */
+if (localStorage.getItem("storedScores") == null){
+    playerScores = {
+        totalGuess: 0,
+        correctGuess: 0
+    }
+    localStorage.setItem("storedScores", JSON.stringify(playerScores));
+}
+else{
+    playerScores = JSON.parse(localStorage.getItem("storedScores"));
+    setScoreTexts();
+}
 
 playerInput.addEventListener("keypress", function(event) {
     if (event.key == "Enter"){
@@ -12,8 +31,14 @@ playerInput.addEventListener("keypress", function(event) {
 let answer = null;
 let scrambledAnswer = null;
 
+/**
+ * Saves players score before window gets closed
+ */
+window.addEventListener("beforeunload", e => {
+    localStorage.setItem("storedScores", JSON.stringify(playerScores));
+})
 
-//shownWord.innerText = answer;
+
 /**
  * Fetching a randomized word from https://random-word-api.herokuapp.com/home
  */
@@ -37,11 +62,18 @@ function getWord(){
 
 }
 
+/**
+ * 
+ * @param {} word - the string of the word
+ * @returns - a scrambled string of the same word
+ */
 function scrambleWord(word){
     let unscrambled = word;
     let scrambled = "";
 
     while(unscrambled != ""){
+        // Selects a random index from the unscrambled letters
+        // Select the letter at that index and add it to scrambled, remove it from unscrambled
         let index = Math.round(Math.random() * ((unscrambled.length) - 1));
         scrambled = scrambled + unscrambled[index];
         unscrambled = unscrambled.slice(0, index) + unscrambled.slice(index + 1, unscrambled.length);
@@ -50,16 +82,31 @@ function scrambleWord(word){
     return scrambled;
 }
 
+/**
+ * Player takes a guess
+ * Updates local storage accordingly
+ */
 function takeGuess(){
     const playerGuess = playerInput.innerHTML;
 
     if (playerGuess.toUpperCase() == answer.toUpperCase()){
         window.alert("CORRECT");
+        playerScores.correctGuess ++;
+        playerScores.totalGuess ++;
+        
     }
     else{
-        window.alert("Guess again!");
+        window.alert("GUESS AGAIN!");
+        playerScores.totalGuess ++;
+        
     }
+
+    setScoreTexts();
 
 }
 
 
+function setScoreTexts(){
+    totalGuessText.innerText = `Number of Guesses: ${playerScores.totalGuess}`;
+    correctText.innerText = `Number of Correct Answers: ${playerScores.correctGuess}`; 
+}
