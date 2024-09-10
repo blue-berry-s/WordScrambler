@@ -1,0 +1,54 @@
+*{
+    font-family:"Playwrite AU QLD";
+}
+
+h1,h2{
+    margin:0;
+    padding:0;
+}
+
+body{
+    overflow:hidden;
+    text-align: center;
+}
+
+input{
+    margin: 4em;
+    font-size:12px;
+    padding: 0 15px;
+    width: 30em;
+    height: 4em;
+    border-radius: 10px;
+}
+
+#explanation{
+    color:black;
+}
+
+
+#random_word{
+    font-size: 5em;
+}
+
+#background_design{
+    top:-10px;
+    left: -10px;
+    height: 110%;
+    width: 110%;
+    position: absolute;
+    z-index: -1;
+    background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 20px,
+    rgba(84, 199, 241, 0.5) 20px 21px
+  );
+}
+
+#red_line{
+    position:absolute;
+    left: 10%;
+    top:-1px;
+    width: 2px;
+    height: 110%;
+    background-color:rgb(220, 42, 42, 0.4);
+}

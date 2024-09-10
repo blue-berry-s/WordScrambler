@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD:wght@100..400&display=swap" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="Style.css">
+    </head>
+    <body onload="getWord()">
+        
+        <div id="background_design"></div>
+        <div id="red_line"></div>
+
+        </div>
+
+        <h1> Guessing eBe </h1>
+        <p id="explanation"> Guess the word created from the scrambled letter below! </p>
+        <h2 id="random_word"> </h2>
+
+        <input id="player_guess" type="text" placeholder="Type here..." onsubmit="takeGuess()"> 
+        <br>
+        <button onclick="takeGuess()"> Guess </button>
+        <button onclick="getWord()"> New Word </button>
+        <p id="guesses">Number of Guesses: 0 </p>
+        <p id="correct">Number of Correct: 0 </p>
+    </body>
+
+    <script src="Script.js"></script>
+</html>
